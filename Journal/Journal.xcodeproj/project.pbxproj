@@ -15,6 +15,8 @@
 		481158D21F957AB8003E60DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 481158D01F957AB8003E60DE /* LaunchScreen.storyboard */; };
 		481158DA1F957FCB003E60DE /* ScreenOne.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 481158D91F957FCB003E60DE /* ScreenOne.storyboard */; };
 		481158DC1F957FE4003E60DE /* ScreenOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481158DB1F957FE4003E60DE /* ScreenOneViewController.swift */; };
+		483C80DA1FB7EA2B00E659F6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483C80D91FB7EA2B00E659F6 /* User.swift */; };
+		483C80DC1FB7EA9A00E659F6 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483C80DB1FB7EA9A00E659F6 /* Place.swift */; };
 		489516C41F958ED00089BD1F /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489516C31F958ED00089BD1F /* AuthService.swift */; };
 		489516C51F9592E20089BD1F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48E1CC351F9588B900BBF186 /* GoogleService-Info.plist */; };
 		489516C71F95950E0089BD1F /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489516C61F95950E0089BD1F /* DataService.swift */; };
@@ -31,6 +33,8 @@
 		481158D31F957AB8003E60DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		481158D91F957FCB003E60DE /* ScreenOne.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScreenOne.storyboard; sourceTree = "<group>"; };
 		481158DB1F957FE4003E60DE /* ScreenOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenOneViewController.swift; sourceTree = "<group>"; };
+		483C80D91FB7EA2B00E659F6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		483C80DB1FB7EA9A00E659F6 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		489516C31F958ED00089BD1F /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		489516C61F95950E0089BD1F /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		48E1CC351F9588B900BBF186 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -82,6 +86,8 @@
 				481158DB1F957FE4003E60DE /* ScreenOneViewController.swift */,
 				489516C31F958ED00089BD1F /* AuthService.swift */,
 				489516C61F95950E0089BD1F /* DataService.swift */,
+				483C80D91FB7EA2B00E659F6 /* User.swift */,
+				483C80DB1FB7EA9A00E659F6 /* Place.swift */,
 			);
 			path = Journal;
 			sourceTree = "<group>";
@@ -242,8 +248,10 @@
 			files = (
 				481158CA1F957AB8003E60DE /* LoginViewController.swift in Sources */,
 				481158C81F957AB8003E60DE /* AppDelegate.swift in Sources */,
+				483C80DA1FB7EA2B00E659F6 /* User.swift in Sources */,
 				481158DC1F957FE4003E60DE /* ScreenOneViewController.swift in Sources */,
 				489516C41F958ED00089BD1F /* AuthService.swift in Sources */,
+				483C80DC1FB7EA9A00E659F6 /* Place.swift in Sources */,
 				489516C71F95950E0089BD1F /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

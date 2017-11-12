@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="W2S-yR-JWK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="W2S-yR-JWK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="AppleSDGothicNeo.ttc">
+            <string>AppleSDGothicNeo-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Screen One View Controller-->
         <scene sceneID="bLU-na-6ue">
@@ -17,13 +22,45 @@
                     <view key="view" contentMode="scaleToFill" id="GRu-hT-ub1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y1U-1Y-Swp">
+                                <rect key="frame" x="0.0" y="206" width="375" height="461"/>
+                                <color key="backgroundColor" red="0.1064179057" green="0.56792598579999998" blue="0.69791005709999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write entries about your day and the places you've been to today!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nLs-vC-5Lm">
+                                <rect key="frame" x="30" y="296" width="315" height="132"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="28"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="9CE-xJ-Yit">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="208"/>
+                            </mapView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="y1U-1Y-Swp" firstAttribute="leading" secondItem="a2l-nT-IVz" secondAttribute="leading" id="0Ph-Ga-Efp"/>
+                            <constraint firstItem="nLs-vC-5Lm" firstAttribute="top" secondItem="a2l-nT-IVz" secondAttribute="top" constant="276" id="7U5-yr-bDq"/>
+                            <constraint firstItem="y1U-1Y-Swp" firstAttribute="top" secondItem="a2l-nT-IVz" secondAttribute="top" constant="186" id="9uy-bA-0v8"/>
+                            <constraint firstItem="9CE-xJ-Yit" firstAttribute="leading" secondItem="a2l-nT-IVz" secondAttribute="leading" id="H30-xs-MUe"/>
+                            <constraint firstItem="a2l-nT-IVz" firstAttribute="bottom" secondItem="nLs-vC-5Lm" secondAttribute="bottom" constant="239" id="HKN-64-Jcd"/>
+                            <constraint firstItem="9CE-xJ-Yit" firstAttribute="trailing" secondItem="a2l-nT-IVz" secondAttribute="trailing" id="N6t-SC-Kfn"/>
+                            <constraint firstItem="9CE-xJ-Yit" firstAttribute="top" secondItem="GRu-hT-ub1" secondAttribute="top" id="YBa-Eu-rgU"/>
+                            <constraint firstItem="a2l-nT-IVz" firstAttribute="trailing" secondItem="nLs-vC-5Lm" secondAttribute="trailing" constant="30" id="YxP-vZ-MUx"/>
+                            <constraint firstItem="y1U-1Y-Swp" firstAttribute="trailing" secondItem="a2l-nT-IVz" secondAttribute="trailing" id="bqZ-P1-98Q"/>
+                            <constraint firstItem="nLs-vC-5Lm" firstAttribute="top" secondItem="9CE-xJ-Yit" secondAttribute="bottom" constant="88" id="iXU-1J-n60"/>
+                            <constraint firstItem="y1U-1Y-Swp" firstAttribute="bottom" secondItem="a2l-nT-IVz" secondAttribute="bottom" id="kd6-Rd-kSw"/>
+                            <constraint firstItem="nLs-vC-5Lm" firstAttribute="leading" secondItem="a2l-nT-IVz" secondAttribute="leading" constant="30" id="yEp-Z7-nQW"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="a2l-nT-IVz"/>
                     </view>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="nLs-vC-5Lm" id="sbn-s7-KP8"/>
+                        <outlet property="mapView" destination="9CE-xJ-Yit" id="eN5-HQ-mfx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TQU-ja-gnT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="148" y="150"/>
+            <point key="canvasLocation" x="148" y="149.77511244377811"/>
         </scene>
     </scenes>
 </document>
