@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Firebase
 
 class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
@@ -18,6 +19,16 @@ class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMa
     var currentLocation: CLLocation!
     var location = CLLocationManager();
     var timer: Timer!
+    
+    @IBAction func onPressSignout(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            self.performSegue(withIdentifier: "backToLogin", sender: self)
+        } catch let signOutError as NSError {
+            print("Error!")
+            return
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

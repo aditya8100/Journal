@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import GoogleSignIn
+import Firebase
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDelegate {
 
+    @IBOutlet weak var signInButton: GIDSignInButton!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var emailErrorLabel: UILabel!
@@ -20,11 +23,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         emailField.delegate = self
         passwordField.delegate = self
+        GIDSignIn.sharedInstance().uiDelegate = self
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return textField.resignFirstResponder()
     }
+    
     
     func validatePassword() -> Bool {
         passwordErrorLabel.isHidden = false
@@ -85,6 +90,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 print("error")
             }
         }
+        
     }
 }
 

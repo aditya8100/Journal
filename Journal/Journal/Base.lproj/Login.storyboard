@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -93,18 +93,26 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FkO-za-VwA" customClass="GIDSignInButton">
+                                <rect key="frame" x="130" y="424" width="114" height="45"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.10641790566309882" green="0.56792598576247666" blue="0.69791005710659904" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.31107951062421368" green="0.17880200804789376" blue="0.65674571700507611" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="FkO-za-VwA" firstAttribute="top" secondItem="6hA-gU-Cca" secondAttribute="bottom" constant="35" id="6Ca-K5-Dbh"/>
                             <constraint firstItem="bG9-2w-zKw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="163" id="6Gk-LX-sIj"/>
                             <constraint firstItem="3sJ-hD-Dcb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="48" id="E04-O2-x1J"/>
                             <constraint firstItem="8Wx-ke-YrI" firstAttribute="top" secondItem="bG9-2w-zKw" secondAttribute="bottom" constant="18" id="E98-11-PVB"/>
                             <constraint firstItem="bG9-2w-zKw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ENT-5c-nMX"/>
                             <constraint firstItem="3sJ-hD-Dcb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KCN-sy-xam"/>
+                            <constraint firstItem="FkO-za-VwA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="130" id="QFv-Y0-kgR"/>
                             <constraint firstItem="amK-et-GkQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Tle-a7-lrW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FkO-za-VwA" secondAttribute="bottom" constant="198" id="X2D-WN-cJP"/>
                             <constraint firstItem="6hA-gU-Cca" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Yfh-Xd-syk"/>
                             <constraint firstItem="mb4-BO-b1C" firstAttribute="top" secondItem="bG9-2w-zKw" secondAttribute="bottom" constant="60" id="Z9e-zJ-hUC"/>
                             <constraint firstItem="mb4-BO-b1C" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fD7-pY-eak"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FkO-za-VwA" secondAttribute="trailing" constant="131" id="mb4-Xd-xTy"/>
                             <constraint firstItem="amK-et-GkQ" firstAttribute="top" secondItem="mb4-BO-b1C" secondAttribute="bottom" constant="20" id="oXF-Ec-9sU"/>
                             <constraint firstItem="8Wx-ke-YrI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yTH-3D-FYi"/>
                             <constraint firstItem="6hA-gU-Cca" firstAttribute="top" secondItem="mb4-BO-b1C" secondAttribute="bottom" constant="56" id="zte-Mj-nEE"/>
@@ -116,6 +124,7 @@
                         <outlet property="emailField" destination="bG9-2w-zKw" id="0EZ-Hr-YWJ"/>
                         <outlet property="passwordErrorLabel" destination="amK-et-GkQ" id="Eyq-dv-hD6"/>
                         <outlet property="passwordField" destination="mb4-BO-b1C" id="MAz-Se-ruX"/>
+                        <outlet property="signInButton" destination="FkO-za-VwA" id="IC4-4B-mAo"/>
                         <segue destination="LtX-RB-ZjY" kind="show" identifier="Login" id="QEa-K1-8Sp"/>
                     </connections>
                 </viewController>
