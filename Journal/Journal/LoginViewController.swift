@@ -24,6 +24,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDel
         emailField.delegate = self
         passwordField.delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().signOut()
+        signInButton.colorScheme = GIDSignInButtonColorScheme.dark
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -38,7 +40,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDel
             return false
         }
         
-        guard password.characters.count >= 6 else {
+        guard password.count >= 6 else {
             passwordErrorLabel.text = "Password must be less than 6 characters!"
             return false
         }

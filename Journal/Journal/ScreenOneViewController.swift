@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import Firebase
+import GoogleSignIn
 
 class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
@@ -19,15 +20,18 @@ class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMa
     var currentLocation: CLLocation!
     var location = CLLocationManager();
     var timer: Timer!
+    var isSignedIn: Bool!
     
     @IBAction func onPressSignout(_ sender: Any) {
         do {
             try Auth.auth().signOut()
-            self.performSegue(withIdentifier: "backToLogin", sender: self)
+            GIDSignIn.sharedInstance().signOut()
+            isSignedIn = false
         } catch let signOutError as NSError {
-            print("Error!")
+            print("Error: \(signOutError)")
             return
         }
+        self.performSegue(withIdentifier: "backToLogin", sender: self)
     }
     
     override func viewDidLoad() {
@@ -35,10 +39,10 @@ class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMa
         mapView.delegate = self
         location.delegate = self
         requestLocationPermission()
+        isSignedIn = true
+        descriptionLabel.isHidden = false
         
-        guard let current = location.location else {
-            return
-        }
+        guard let current = location.location else { return }
         
         currentLocation = current
         
@@ -83,7 +87,7 @@ class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMa
     }
     
     @objc func addPlace() {
-        if didChangeLocation {
+        if didChangeLocation && isSignedIn {
             let geocoder = CLGeocoder()
             geocoder.reverseGeocodeLocation(currentLocation) { (placemarkData, error) in
                 if error != nil {
@@ -109,6 +113,7 @@ class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMa
                 
                 DataService.instance.addPlace(placeData: placeData)
                 print("Worked!")
+                self.descriptionLabel.isHidden = true
             }
         }
         

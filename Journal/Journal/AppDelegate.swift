@@ -17,9 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             return
         }
         
-        guard let authentication = user.authentication else {
-            return
-        }
+        guard let authentication = user.authentication else { return }
         
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
         
@@ -28,13 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 return
             }
             
-            guard let uid = user?.uid else {
-                return
-            }
-            
-            guard let email = user?.email else {
-                return
-            }
+            guard let uid = user?.uid else { return }
+            guard let email = user?.email else { return }
             
             let userData: [String: Any] = ["email": email as Any, "providor": user?.providerID as Any]
             DataService.instance.createUser(userID: uid, userData: userData)
@@ -43,6 +36,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         }
         
     }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        do {
+            try Auth.auth().signOut()
+            GIDSignIn.sharedInstance().signOut()
+        } catch let error as NSError {
+            print("Error:\(error)")
+            return
+        }
+     }
     
     var window: UIWindow?
 
@@ -84,6 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        GIDSignIn.sharedInstance().signOut()
     }
 
 
