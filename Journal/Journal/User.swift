@@ -24,7 +24,7 @@ class User {
                     return
                 }
                 
-                let place = Place(placeDict: placeDict)
+                let place = Place(placeDict: placeDict, placekey: p.keys.first!)
                 _places?.append(place)
             }
         }

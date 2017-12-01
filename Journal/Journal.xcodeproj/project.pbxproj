@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		115B2A86260E3410B7865764 /* Pods_Journal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 926AE436BFADCA1347F623FF /* Pods_Journal.framework */; };
+		4808CE001FD0EE6A00FFC913 /* JournalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4808CDFF1FD0EE6A00FFC913 /* JournalCell.swift */; };
+		4808CE021FD0F34300FFC913 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4808CE011FD0F34300FFC913 /* EditViewController.swift */; };
 		481158C81F957AB8003E60DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481158C71F957AB8003E60DE /* AppDelegate.swift */; };
 		481158CA1F957AB8003E60DE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481158C91F957AB8003E60DE /* LoginViewController.swift */; };
 		481158CD1F957AB8003E60DE /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 481158CB1F957AB8003E60DE /* Login.storyboard */; };
@@ -24,6 +26,8 @@
 
 /* Begin PBXFileReference section */
 		00F6431634668DE96867B41D /* Pods-Journal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Journal.release.xcconfig"; path = "Pods/Target Support Files/Pods-Journal/Pods-Journal.release.xcconfig"; sourceTree = "<group>"; };
+		4808CDFF1FD0EE6A00FFC913 /* JournalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCell.swift; sourceTree = "<group>"; };
+		4808CE011FD0F34300FFC913 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		481158C41F957AB8003E60DE /* Journal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Journal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		481158C71F957AB8003E60DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		481158C91F957AB8003E60DE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +92,8 @@
 				489516C61F95950E0089BD1F /* DataService.swift */,
 				483C80D91FB7EA2B00E659F6 /* User.swift */,
 				483C80DB1FB7EA9A00E659F6 /* Place.swift */,
+				4808CDFF1FD0EE6A00FFC913 /* JournalCell.swift */,
+				4808CE011FD0F34300FFC913 /* EditViewController.swift */,
 			);
 			path = Journal;
 			sourceTree = "<group>";
@@ -258,6 +264,8 @@
 				489516C41F958ED00089BD1F /* AuthService.swift in Sources */,
 				483C80DC1FB7EA9A00E659F6 /* Place.swift in Sources */,
 				489516C71F95950E0089BD1F /* DataService.swift in Sources */,
+				4808CE001FD0EE6A00FFC913 /* JournalCell.swift in Sources */,
+				4808CE021FD0F34300FFC913 /* EditViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

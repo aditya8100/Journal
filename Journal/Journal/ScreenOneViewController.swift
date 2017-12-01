@@ -12,8 +12,9 @@ import CoreLocation
 import Firebase
 import GoogleSignIn
 
-class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var journalTableView: UITableView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var descriptionLabel: UILabel!
     var didChangeLocation: Bool = true
@@ -21,6 +22,8 @@ class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMa
     var location = CLLocationManager();
     var timer: Timer!
     var isSignedIn: Bool!
+    var places = [Place]()
+    var selectedCell: JournalCell?
     
     @IBAction func onPressSignout(_ sender: Any) {
         do {
@@ -41,6 +44,8 @@ class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMa
         requestLocationPermission()
         isSignedIn = true
         descriptionLabel.isHidden = false
+        journalTableView.delegate = self
+        journalTableView.dataSource = self
         
         guard let current = location.location else { return }
         
@@ -71,6 +76,11 @@ class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMa
         } else {
             didChangeLocation = false
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getPlaces()
     }
     
     func requestLocationPermission() {
@@ -109,7 +119,10 @@ class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMa
                     name = "Unknown Location"
                 }
                 
-                let placeData: [String:Any] = ["location": ["lat":self.currentLocation.coordinate.latitude, "long": self.currentLocation.coordinate.longitude], "name": name]
+                let dateFormatter = DateFormatter()
+                let date = dateFormatter.string(from: Date())
+                
+                let placeData: [String:Any] = ["location": ["lat":self.currentLocation.coordinate.latitude, "long": self.currentLocation.coordinate.longitude], "name": name, "timestamp": date, "userDescription": "Press Edit to update entry!"]
                 
                 DataService.instance.addPlace(placeData: placeData)
                 print("Worked!")
@@ -118,5 +131,49 @@ class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMa
         }
         
         didChangeLocation = false
+    }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return places.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "journalCell", for: indexPath) as? JournalCell else {
+            return JournalCell()
+        }
+        
+        cell.ScreenOneVC = self
+        
+        cell.configureCell(place: places[indexPath.row])
+        
+        return cell
+    }
+    
+    func getPlaces() {
+        DataService.instance.getPlaces { (places) in
+            self.places = places.reversed()
+            self.journalTableView.reloadData()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? JournalCell else {
+            return
+        }
+        
+        selectedCell = cell
+    }
+    
+    func editPressed(cell: JournalCell) {
+        selectedCell = cell
+        performSegue(withIdentifier: "edit", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "edit", let editVC = segue.destination as? EditViewController, let userDescription = selectedCell?.place.userDescription, let place = selectedCell?.place {
+            editVC.userDescription = userDescription
+            editVC.place = place
+        }
     }
 }

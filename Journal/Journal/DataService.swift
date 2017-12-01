@@ -36,4 +36,37 @@ class DataService {
         
         _REF_USERS.child(uid).child("Places").childByAutoId().updateChildValues(placeData)
     }
+    
+    func getPlaces(completion: @escaping ([Place]) -> ()) {
+        var places = [Place]()
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        REF_USERS.child(uid).child("Places").queryOrdered(byChild: "timestamp").observe(.value) { (snapshot) in
+            guard let snapshots = snapshot.children.allObjects as? [DataSnapshot] else {
+                return
+            }
+            
+            for snap in snapshots {
+                guard let placeDict = snap.value as? [String:Any] else {
+                    return
+                }
+                
+                let place = Place(placeDict: placeDict, placekey: snap.key)
+                places.append(place)
+            }
+            
+            completion(places)
+        }
+        
+    }
+    
+    func savePlace(placeData: [String: Any], place: Place) {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        REF_USERS.child(uid).child("Places").child(place.placekey).updateChildValues(placeData)
+    }
 }

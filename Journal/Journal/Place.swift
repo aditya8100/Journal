@@ -14,6 +14,8 @@ class Place {
     private var _name: String!
     private var _userDescription: String!
     private var _placesDict: [String: Any]!
+    private var _timestamp: Date!
+    private var _placekey: String!
     
     var location: [String: CLLocationDegrees] {
         return _location
@@ -31,7 +33,15 @@ class Place {
         return _placesDict
     }
     
-    init(placeDict: [String: Any]) {
+    var timestamp: Date {
+        return _timestamp
+    }
+    
+    var placekey: String {
+        return _placekey
+    }
+    
+    init(placeDict: [String: Any], placekey: String) {
         if let location = placeDict["location"] as? [String: Double]{
             _location = location
         }
@@ -40,9 +50,16 @@ class Place {
             _name = name
         }
         
-        if let description = placeDict["description"] as? String {
-            _userDescription = description
+        if let userDescription = placeDict["userDescription"] as? String {
+            _userDescription = userDescription
         }
+        
+        if let timestamp = placeDict["timestamp"] as? String {
+            let dateFormatter = DateFormatter()
+            _timestamp = dateFormatter.date(from: timestamp)
+        }
+        
+        _placekey = placekey
         
         _placesDict = placeDict
     }
