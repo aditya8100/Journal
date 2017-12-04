@@ -133,7 +133,6 @@ class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMa
         didChangeLocation = false
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return places.count
     }
