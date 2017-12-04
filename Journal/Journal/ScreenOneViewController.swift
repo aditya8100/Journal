@@ -69,13 +69,15 @@ class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMa
         
         mapView.setRegion(region, animated: true)
         
-        if currentLocation.distance(from: userLoc) > 800 || currentLocation.distance(from: userLoc) == 0 {
+        if currentLocation.distance(from: userLoc) > 100 || currentLocation.distance(from: userLoc) == 0 {
             currentLocation = userLoc
             didChangeLocation = true
             timer.fire()
         } else {
             didChangeLocation = false
         }
+        
+        getPlaces()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -125,12 +127,39 @@ class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMa
                 let placeData: [String:Any] = ["location": ["lat":self.currentLocation.coordinate.latitude, "long": self.currentLocation.coordinate.longitude], "name": name, "timestamp": date, "userDescription": "Press Edit to update entry!"]
                 
                 DataService.instance.addPlace(placeData: placeData)
+                self.getPlaces()
                 print("Worked!")
                 self.descriptionLabel.isHidden = true
             }
         }
         
         didChangeLocation = false
+    }
+    
+    func traceLocation(places: [Place]) {
+        var coordinates = [CLLocationCoordinate2D]()
+        for place in places {
+            let location = place.location
+            if let latitude = location["lat"], let longitude = location["long"] {
+                let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                coordinates.append(coordinate)
+            }
+        }
+            
+        let polyline = MKPolyline(coordinates: coordinates, count: coordinates.count)
+        self.mapView.add(polyline)
+        
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        guard let polyline = overlay as? MKPolyline else {
+            return MKOverlayRenderer()
+        }
+        
+        let renderer = MKPolylineRenderer(overlay: polyline)
+        renderer.strokeColor = UIColor.blue
+        renderer.lineWidth = 4
+        return renderer
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -153,6 +182,11 @@ class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMa
         DataService.instance.getPlaces { (places) in
             self.places = places.reversed()
             self.journalTableView.reloadData()
+            var places2 = places
+            if places2.count > 2 {
+                places2.removeSubrange(0..<places2.count - 2)
+            }
+            self.traceLocation(places: places2)
         }
     }
     
