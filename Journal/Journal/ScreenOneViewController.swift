@@ -11,12 +11,15 @@ import MapKit
 import CoreLocation
 import Firebase
 import GoogleSignIn
+import CoreMotion
 
 class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var stepCounterLabel: UILabel!
     @IBOutlet weak var journalTableView: UITableView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var descriptionLabel: UILabel!
+    
     var didChangeLocation: Bool = true
     var currentLocation: CLLocation!
     var location = CLLocationManager();
@@ -24,6 +27,8 @@ class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMa
     var isSignedIn: Bool!
     var places = [Place]()
     var selectedCell: JournalCell?
+    let pedometer = CMPedometer()
+    var activityManager = CMMotionActivityManager()
     
     @IBAction func onPressSignout(_ sender: Any) {
         do {
@@ -53,6 +58,17 @@ class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMa
         
         timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: (#selector(ScreenOneViewController.addPlace)), userInfo: nil, repeats: didChangeLocation)
         // Do any additional setup after loading the view.
+        if CMPedometer.isStepCountingAvailable() {
+            pedometer.startUpdates(from: Date(), withHandler: { (pedometerData, error) in
+                if error != nil {
+                    print("Steps error!")
+                    return
+                }
+                
+                self.stepCounterLabel.text = pedometerData?.numberOfSteps.stringValue
+                print("Steps worked!")
+            })
+        }
     }
     
     override func didReceiveMemoryWarning() {

@@ -50,7 +50,7 @@
                                         <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hxn-E2-gii">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="461"/>
+                                        <rect key="frame" x="0.0" y="37" width="375" height="424"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <prototypes>
@@ -70,7 +70,7 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" priority="250" constant="153" id="2x1-At-JrH"/>
                                                                     </constraints>
-                                                                    <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                 </textView>
@@ -124,13 +124,27 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Steps:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMJ-cs-uMK">
+                                        <rect key="frame" x="8" y="8" width="63" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibM-zx-BD6">
+                                        <rect key="frame" x="66" y="8" width="63" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1064179057" green="0.56792598579999998" blue="0.69791005709999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="hxn-E2-gii" secondAttribute="trailing" id="7uw-DB-WPK"/>
                                     <constraint firstItem="hxn-E2-gii" firstAttribute="leading" secondItem="y1U-1Y-Swp" secondAttribute="leading" id="NoT-QY-G9B"/>
                                     <constraint firstAttribute="bottom" secondItem="hxn-E2-gii" secondAttribute="bottom" id="TKE-g2-eBZ"/>
-                                    <constraint firstItem="hxn-E2-gii" firstAttribute="top" secondItem="y1U-1Y-Swp" secondAttribute="top" id="xDV-rL-El4"/>
+                                    <constraint firstItem="hxn-E2-gii" firstAttribute="top" secondItem="y1U-1Y-Swp" secondAttribute="top" constant="37" id="xDV-rL-El4"/>
                                 </constraints>
                             </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="9CE-xJ-Yit">
@@ -153,6 +167,7 @@
                         <outlet property="descriptionLabel" destination="nLs-vC-5Lm" id="sbn-s7-KP8"/>
                         <outlet property="journalTableView" destination="hxn-E2-gii" id="7ju-si-qIn"/>
                         <outlet property="mapView" destination="9CE-xJ-Yit" id="eN5-HQ-mfx"/>
+                        <outlet property="stepCounterLabel" destination="ibM-zx-BD6" id="XWg-Nr-ng3"/>
                         <segue destination="IBR-cL-6ht" kind="presentation" identifier="backToLogin" id="UHy-Va-g11"/>
                         <segue destination="VVx-7x-fky" kind="presentation" identifier="edit" id="yua-Ec-wqC"/>
                     </connections>
