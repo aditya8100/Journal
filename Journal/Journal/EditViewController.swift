@@ -26,7 +26,7 @@ class EditViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func savePressed(_ sender: Any) {
-        var placeData: [String: Any] = ["userDescription": textView.text]
+        let placeData: [String: Any] = ["userDescription": textView.text]
         DataService.instance.savePlace(placeData: placeData, place: place)
         dismiss(animated: true, completion: nil)
     }

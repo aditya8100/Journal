@@ -11,12 +11,14 @@ import MapKit
 import CoreLocation
 import Firebase
 import GoogleSignIn
+import CoreMotion
 
 class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var journalTableView: UITableView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var stepCounter: UILabel!
     var didChangeLocation: Bool = true
     var currentLocation: CLLocation!
     var location = CLLocationManager();
@@ -24,6 +26,7 @@ class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMa
     var isSignedIn: Bool!
     var places = [Place]()
     var selectedCell: JournalCell?
+    var pedometer = CMPedometer()
     
     @IBAction func onPressSignout(_ sender: Any) {
         do {
@@ -35,6 +38,21 @@ class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMa
             return
         }
         self.performSegue(withIdentifier: "backToLogin", sender: self)
+    }
+    
+    func getCurrentLocalDate()-> Date {
+        var now = Date()
+        var nowComponents = DateComponents()
+        let calendar = Calendar.current
+        nowComponents.year = Calendar.current.component(.year, from: now)
+        nowComponents.month = Calendar.current.component(.month, from: now)
+        nowComponents.day = Calendar.current.component(.day, from: now)
+        nowComponents.hour = 0
+        nowComponents.minute = 0
+        nowComponents.second = 0
+        nowComponents.timeZone = TimeZone(abbreviation: "GMT")!
+        now = calendar.date(from: nowComponents)!
+        return now as Date
     }
     
     override func viewDidLoad() {
@@ -53,6 +71,28 @@ class ScreenOneViewController: UIViewController, CLLocationManagerDelegate, MKMa
         
         timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: (#selector(ScreenOneViewController.addPlace)), userInfo: nil, repeats: didChangeLocation)
         // Do any additional setup after loading the view.
+        
+        if CMPedometer.isStepCountingAvailable() {
+            let date = getCurrentLocalDate()
+            print("date: \(date)")
+            
+            pedometer.startUpdates(from: date, withHandler: { (pedometerData, error) in
+                if error != nil {
+                    return
+                }
+                guard let numberOfSteps = pedometerData?.numberOfSteps else {
+                    return
+                }
+                
+                print("Steps: \(numberOfSteps)")
+                DataService.instance.addSteps(steps: numberOfSteps)
+                
+                DispatchQueue.main.async {
+                    self.stepCounter.text = numberOfSteps.stringValue
+                }
+                
+            })
+        }
     }
     
     override func didReceiveMemoryWarning() {

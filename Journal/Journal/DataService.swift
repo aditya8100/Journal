@@ -62,6 +62,16 @@ class DataService {
         
     }
     
+    func addSteps(steps: Any) {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        let stepsToFirebase = ["Steps": steps]
+        
+        REF_USERS.child(uid).updateChildValues(stepsToFirebase)
+    }
+    
     func savePlace(placeData: [String: Any], place: Place) {
         guard let uid = Auth.auth().currentUser?.uid else {
             return
